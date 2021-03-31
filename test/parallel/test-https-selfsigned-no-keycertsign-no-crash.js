@@ -82,12 +82,12 @@ httpsServer.on('listening', () => {
     ca: cert
   };
   // Try to connect
-  const req = https.request(clientOptions, (res) => {
+  const req = https.request(clientOptions, common.mustCall((res) => {
     httpsServer.close();
-  });
+  }));
 
-  req.on('error', (e) => {
+  req.on('error', common.mustNotCall((e) => {
     httpsServer.close();
-  });
+  }));
   req.end();
 });
