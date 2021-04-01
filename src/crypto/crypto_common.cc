@@ -488,8 +488,7 @@ MaybeLocal<Object> GetLastIssuedCert(
     // Delete previous cert and continue aggregating issuers.
     cert->reset(ca);
 
-    X509* value_after_reset = cert->get();
-    if (value_before_reset == value_after_reset)
+    if (value_before_reset == ca)
       break;
   }
   return MaybeLocal<Object>(issuer_chain);
